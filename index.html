@@ -1,0 +1,106 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class = "card">
+    <div class = "search">
+        <input type = "text" id="city" placeholder="Enter city name" spellcheck="false">
+        <button class="search-button"><img src="img/search.png" alt=""></button>
+        <button class="contact-button" style="margin-left: 10px;"><img src="img/phone.png" alt=""></button>
+    </div>
+    <div class="weather">
+        <img src = "/img/rain.png" id = "weather-icon" class = "weather-icon">
+        <h1 class = "temp" id = "temperature">-16°C</h1>
+        <h2 class = "city" id = "location">Astana</h2>
+        <div class="details">
+            <div class="col">
+                <img src="img/humidity.png">
+                <div>
+                    <p id="humidity"class="humidity">50%</p>
+                    <p>Humidity</p>
+                </div>
+            </div>
+            <div class="col">
+                <img src="img/wind.png">
+                <div>
+                    <p id="wind" class="wind">15 km/h</p>
+                    <p>Wind Speed</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+<script>
+    const serverURL = "http://localhost:3000/weather";
+
+    async function checkWeather(city = 'Astana') {
+        try {
+            const response = await fetch(`${serverURL}?city=${city}`);
+            const data = await response.json();
+            console.log(data);
+            updateWeather(data);
+        } catch (error) {
+            console.error('Error fetching weather data:', error);
+            alert('Invalid city name. Please try again.');
+        }
+    }
+
+    async function searchWeather() {
+        const cityInput = document.getElementById('city');
+        const city = cityInput.value;
+        if (city.trim() !== '') {
+            await checkWeather(city);
+        } else {
+            alert('Please enter a city name.');
+        }
+    }
+
+    function configureCondition(condition) {
+        condition = condition.toLowerCase();
+
+        if (condition.includes("snow")) {
+            return "snow";
+        } else if (condition.includes("mist") || condition.includes("fog")) {
+            return "mist";
+        } else if (condition.includes("sunny") || condition.includes("clear")) {
+            return "sunny";
+        } else if (condition.includes("cloud") || condition.includes("overcast")) {
+            return "cloudy";
+        } else if (condition.includes("rain") || condition.includes("thunder")) {
+            return "rain";
+        } else {
+            return "sunny";
+        }
+    }
+
+    function updateWeather(data) {
+        const condition = data.condition.toLowerCase();
+        const weather = configureCondition(condition);
+        document.getElementById('weather-icon').src = `/img/${weather}.png`;
+        document.getElementById('temperature').innerText = `${data.temperature}°C`;
+        document.getElementById('location').innerText = data.location;
+        document.getElementById('humidity').innerText = `${data.humidity}%`;
+        document.getElementById('wind').innerText = `${data.windSpeed} km/h`;
+    }
+
+    function navigateTo(page) {
+        window.location.href = `/${page}`;
+    }
+
+    document.querySelector('.search-button').addEventListener('click', function () {
+        searchWeather();
+    });
+
+    document.querySelector('.contact-button').addEventListener('click', function () {
+        navigateTo('contact');
+    });
+
+    checkWeather();
+</script>
+</html>
