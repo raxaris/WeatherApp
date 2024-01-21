@@ -41,10 +41,11 @@ Make sure you have Node.js and npm installed on your machine. You can download t
 ### 5. Start the development server:
     ```bash
     npm start
-## This command starts a development server, and you can access the Weather App in your web browser at http://localhost:3000.
+### This command starts a development server, and you can access the Weather App in your web browser at http://localhost:3000.
 
 ### 6. Usage:
-## Enter a city name:
-Open the Weather App in your web browser.
-Enter the desired city name in the search bar and click the search button.
-Now, you should be able to run the Weather App on your local machine. If you encounter any issues, make sure you have followed each step correctly and that your system meets the prerequisites. Feel free to reach out if you need further assistance!
+### Enter a city name:
+- Open the Weather App in your web browser.
+- Enter the desired city name in the search bar and click the search button.
+
+### Now, you should be able to run the Weather App on your local machine. If you encounter any issues, make sure you have followed each step correctly and that your system meets the prerequisites. Feel free to reach out if you need further assistance!
