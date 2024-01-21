@@ -8,7 +8,6 @@ The Weather App is a web application that allows users to check the current weat
 - **Search Functionality:** Obtain weather information for any city worldwide.
 - **Visual Representation:** Icons visually represent weather conditions.
 - **Additional Details:** Display of humidity and wind speed.
-- **Responsive Design:** Ensures a seamless user experience on various devices.
 
 ## Prerequisites
 
@@ -22,24 +21,19 @@ The Weather App is a web application that allows users to check the current weat
 Make sure you have Node.js and npm installed on your machine. You can download them from the [Node.js website](https://nodejs.org/).
 
 ### 1. Clone the repository:
-    ```bash
     git clone https://github.com/raxaris/WeatherApp.git
 ### 2. Navigate to the project directory:
-    ```bash
     cd WeatherApp
 
 ### 3. Initialize the Project:
-    ```bash
     npm init -y
 
 ### 4. Install the Dependencies:
-    ```bash
     npm install
     npm install axios
     npm install express
       
 ### 5. Start the development server:
-    ```bash
     npm start
 ### This command starts a development server, and you can access the Weather App in your web browser at http://localhost:3000.
 
